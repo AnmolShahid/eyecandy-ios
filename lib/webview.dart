@@ -20,7 +20,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
     return WillPopScope(child:  Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        child: SingleChildScrollView(
+     //   child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
@@ -36,7 +36,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
               Stack(
                 children: [
                   Container(
-                      height: size.height,
+                      height: size.height/1.5,
                       width: size.width,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -44,6 +44,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
                           initialUrl:
                               "https://eyecandy.salonized.com/bookings/new?layout=standalone",
                           javascriptMode: JavascriptMode.unrestricted,
+                          
                           onWebViewCreated:
                               (WebViewController webViewController) {
                             _controller.complete(webViewController);
@@ -82,13 +83,16 @@ class _WebViewScreenState extends State<WebViewScreen> {
               GestureDetector(
                 onTap: () {
                   Navigator.pop(context);
+                   Navigator.push(
+          context, MaterialPageRoute(builder: (context) => SecondScreen()));
+
                 },
                 child: Image.asset("assets/images/iconback.png"),
               ),
-              SizedBox(height: 20),
+           //   SizedBox(height: 20),
             ],
           ),
-        ),
+     //   ),
       ),
     ), onWillPop: (){
        Navigator.push(
