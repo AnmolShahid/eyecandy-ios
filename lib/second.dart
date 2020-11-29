@@ -12,17 +12,33 @@ class SecondScreen extends StatefulWidget {
 class _SecondScreenState extends State<SecondScreen> {
   _launchFB() async {
     const url = 'https://facebook.com/eyecandythehague';
-    if (await canLaunch(url)) {
-      await launch(url);
+   
+    if (await canLaunch(url,)) {
+      await launch(url, forceWebView: true ,enableJavaScript: true,);
     } else {
       throw 'Could not launch $url';
     }
   }
-
+ _launchgiftcard() async {
+    const url = 'https://giftcard.sumup.io/order/GWTQRTC/kay';
+    if (await canLaunch(url)) {
+      await launch(url, forceWebView: true ,enableJavaScript: true,);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+   _launchask() async {
+    const url = 'https://eyecandy.salonized.com/bookings/new?layout=standalone';
+    if (await canLaunch(url)) {
+      await launch(url, forceWebView: true ,enableJavaScript: true,);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
   _launchIG() async {
     const url = 'https://instagram.com/eyecandy.thehague';
     if (await canLaunch(url)) {
-      await launch(url);
+      await launch(url, forceWebView: true ,enableJavaScript: true,);
     } else {
       throw 'Could not launch $url';
     }
@@ -31,7 +47,7 @@ class _SecondScreenState extends State<SecondScreen> {
   _launchWH() async {
     const url = 'https://wa.me/31639222112';
     if (await canLaunch(url)) {
-      await launch(url);
+      await launch(url, forceWebView: true ,enableJavaScript: true,);
     } else {
       throw 'Could not launch $url';
     }
@@ -39,10 +55,10 @@ class _SecondScreenState extends State<SecondScreen> {
  @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 7), () {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => WebViewScreen()));
-    });
+    // Timer(Duration(seconds: 7), () {
+    //   Navigator.push(
+    //       context, MaterialPageRoute(builder: (context) => WebViewScreen()));
+    // });
   }
 
   @override
@@ -56,8 +72,9 @@ class _SecondScreenState extends State<SecondScreen> {
         //       Image.asset('assets/images/eyecandylogo.png', fit: BoxFit.cover),
         // ),
         backgroundColor: Colors.white,
-        body: Center(
-          child: Column(
+        body: ListView(
+         children: <Widget>[
+            Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
@@ -101,7 +118,7 @@ class _SecondScreenState extends State<SecondScreen> {
                       vertical: 14,
                     ),
                     child: Text(
-                      "Je kan tot uiterlijk 2 uur van te voren een afspraak inplannen. Staat de gewenste dag/tijd er niet bij? Druk dan op het Whatsapp icoontje, en stuur een bericht!",
+                      "Je kan tot uiterlijk 2 uur van te voren een afspraak inplannen. Staat de gewenste dag/tijd er niet bij?  Druk dan op het WhatsApp icoontje en stuur een bericht!",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
@@ -110,76 +127,107 @@ class _SecondScreenState extends State<SecondScreen> {
                   ),
                 ],
               ),
-           //   GestureDetector(
-                // onTap: () {
-                //   Navigator.push(context,
-                //       MaterialPageRoute(builder: (context) => WebViewScreen()));
-                // },
-              //   child: Image.asset(
-              //     "assets/images/iconforward.png",
-              //     fit: BoxFit.cover,
-              //     height: 70,
-              //   ),
-              // ),
-              Center(
-                child:  JumpingDotsProgressIndicator(
-              fontSize: 40.0,
-              numberOfDots: 4,
-              color: Colors.black,
-            )
-                // Text(
-                //   "Afspraak maken",
-                //   style: TextStyle(
-                //     color: Colors.black,
-                //     fontSize: 18,
-                //   ),
-                // ),
+              SizedBox(height: 20,),
+             GestureDetector(
+               onTap: _launchask,
+                child: Image.asset(
+                  "assets/images/asf.jpeg",
+                  fit: BoxFit.cover,
+                  height: 70,
+                ),
               ),
-              Column(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: _launchFB,
-                        child: Image.asset(
-                          "assets/images/facebook.png",
-                          height: 50,
-                          width: 50,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      GestureDetector(
-                        onTap: _launchIG,
-                        child: Image.asset(
-                          "assets/images/insta.png",
-                          height: 50,
-                          width: 50,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      GestureDetector(
-                        onTap: _launchWH,
-                        child: Image.asset(
-                          "assets/images/whatsapp.png",
-                          height: 50,
-                          width: 50,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+              GestureDetector(
+                onTap:_launchgiftcard,
+                child: Image.asset(
+                  "assets/images/giftcard.jpeg",
+                  fit: BoxFit.cover,
+                  height: 70,
+                ),
+              ),GestureDetector(
+                onTap:_launchWH,
+                child: Image.asset(
+                  "assets/images/whatsapp.jpeg",
+                  fit: BoxFit.cover,
+                  height: 70,
+                ),
               ),
+              GestureDetector(
+                onTap:_launchIG,
+                child: Image.asset(
+                  "assets/images/instagram.jpeg",
+                  fit: BoxFit.cover,
+                  height: 70,
+                ),
+              ),GestureDetector(
+                onTap: _launchFB,
+                child: Image.asset(
+                  "assets/images/facebook.jpeg",
+                  fit: BoxFit.cover,
+                  height: 70,
+                ),
+              ),
+            //   Center(
+            //     child:  JumpingDotsProgressIndicator(
+            //   fontSize: 40.0,
+            //   numberOfDots: 4,
+            //   color: Colors.black,
+            // )
+            //     // Text(
+            //     //   "Afspraak maken",
+            //     //   style: TextStyle(
+            //     //     color: Colors.black,
+            //     //     fontSize: 18,
+            //     //   ),
+            //     // ),
+            //   ),
+            //   Column(
+            //     children: <Widget>[
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         children: <Widget>[
+            //           GestureDetector(
+            //             onTap: _launchFB,
+            //             child: Image.asset(
+            //               "assets/images/facebook.png",
+            //               height: 50,
+            //               width: 50,
+            //               fit: BoxFit.cover,
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             width: 30,
+            //           ),
+            //           GestureDetector(
+            //             onTap: _launchIG,
+            //             child: Image.asset(
+            //               "assets/images/insta.png",
+            //               height: 50,
+            //               width: 50,
+            //               fit: BoxFit.cover,
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             width: 30,
+            //           ),
+            //           GestureDetector(
+            //             onTap: _launchWH,
+            //             child: Image.asset(
+            //               "assets/images/whatsapp.png",
+            //               height: 50,
+            //               width: 50,
+            //               fit: BoxFit.cover,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+           
             ],
           ),
-        ),
+      
+         ],
+          ),
       ),
     );
   }
