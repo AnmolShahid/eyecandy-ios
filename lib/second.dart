@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'webview.dart';
+
 import 'package:url_launcher/url_launcher.dart';
-import 'dart:async';
-import 'package:progress_indicators/progress_indicators.dart';
+
 
 class SecondScreen extends StatefulWidget {
   @override
@@ -28,7 +27,7 @@ class _SecondScreenState extends State<SecondScreen> {
     }
   }
    _launchask() async {
-    const url = 'https://eyecandy.salonized.com/bookings/new?layout=standalone';
+    const url = 'https://eyecandy.salonized.com/widget_bookings/new';
     if (await canLaunch(url)) {
       await launch(url, forceWebView: true ,enableJavaScript: true,);
     } else {
